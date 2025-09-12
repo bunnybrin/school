@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конспект: Чотирикутники</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f4f8;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .instruction {
+            background: #e6fffa;
+            color: #234e52;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 16px;
+            border: 2px solid #4fd1c7;
+        }
+
+        .shapes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .shape-container {
+            text-align: center;
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .shape-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 15px;
+        }
+
+        .shape-canvas {
+            border: 2px solid #cbd5e0;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .info-display {
+            margin-top: 15px;
+            padding: 15px;
+            background: #2d3748;
+            color: white;
+            border-radius: 8px;
+            min-height: 60px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .legend {
+            background: #1a202c;
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .legend h3 {
+            margin-top: 0;
+            color: #4fd1c7;
+            text-align: center;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+        }
+
+        .highlight-vertices { background: #ff6b6b; }
+        .highlight-sides { background: #4ecdc4; }
+        .highlight-diagonals { background: #ffe66d; }
+        .highlight-adjacent { background: #ff8c42; }
+        .highlight-opposite { background: #a8e6cf; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>📐 Конспект: Чотирикутники</h1>
+
+    <div class="instruction">
+        <strong>Натискайте на різні частини чотирикутників!</strong><br>
+        Клікніть на вершину, сторону або всередину фігури, щоб дізнатися більше
+    </div>
+
+    <div class="shapes-grid">
+        <div class="shape-container">
+            <div class="shape-title">Квадрат</div>
+            <canvas class="shape-canvas" id="square" width="300" height="250"></canvas>
+            <div class="info-display" id="square-info">
+                Клікніть на квадрат для вивчення його елементів
+            </div>
+        </div>
+
+        <div class="shape-container">
+            <div class="shape-title">Прямокутник</div>
+            <canvas class="shape-canvas" id="rectangle" width="300" height="250"></canvas>
+            <div class="info-display" id="rectangle-info">
+                Клікніть на прямокутник для вивчення його елементів
+            </div>
+        </div>
+
+        <div class="shape-container">
+            <div class="shape-title">Ромб</div>
+            <canvas class="shape-canvas" id="rhombus" width="300" height="250"></canvas>
+            <div class="info-display" id="rhombus-info">
+                Клікніть на ромб для вивчення його елементів
+            </div>
+        </div>
+
+        <div class="shape-container">
+            <div class="shape-title">Довільний чотирикутник</div>
+            <canvas class="shape-canvas" id="arbitrary" width="300" height="250"></canvas>
+            <div class="info-display" id="arbitrary-info">
+                Клікніть на чотирикутник для вивчення його елементів
+            </div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <h3>🎨 Легенда кольорів</h3>
+        <div class="legend-grid">
+            <div class="legend-item">
+                <div class="color-box highlight-vertices"></div>
+                <span>Вершини (A, B, C, D)</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box highlight-sides"></div>
+                <span>Сторони чотирикутника</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box highlight-diagonals"></div>
+                <span>Діагоналі</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box highlight-adjacent"></div>
+                <span>Сусідні елементи</span>
+            </div>
+            <div class="legend-item">
+                <div class="color-box highlight-opposite"></div>
+                <span>Протилежні елементи</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  class QuadrilateralTeacher {
+    constructor(canvasId, shapeType) {
+      this.canvas = document.getElementById(canvasId);
+      this.ctx = this.canvas.getContext('2d');
+      this.infoDiv = document.getElementById(canvasId + '-info');
+      this.shapeType = shapeType;
+      this.currentHighlight = null;
+
+      this.setupShape();
+      this.canvas.addEventListener('click', (e) => this.handleClick(e));
+      this.draw();
+    }
+
+    setupShape() {
+      const centerX = this.canvas.width / 2;
+      const centerY = this.canvas.height / 2;
+
+      switch(this.shapeType) {
+        case 'square':
+          const size = 60;
+          this.vertices = [
+            {x: centerX - size, y: centerY - size, label: 'A'},
+            {x: centerX + size, y: centerY - size, label: 'B'},
+            {x: centerX + size, y: centerY + size, label: 'C'},
+            {x: centerX - size, y: centerY + size, label: 'D'}
+          ];
+          break;
+
+        case 'rectangle':
+          const w = 80, h = 50;
+          this.vertices = [
+            {x: centerX - w, y: centerY - h, label: 'A'},
+            {x: centerX + w, y: centerY - h, label: 'B'},
+            {x: centerX + w, y: centerY + h, label: 'C'},
+            {x: centerX - w, y: centerY + h, label: 'D'}
+          ];
+          break;
+
+        case 'rhombus':
+          const r = 70;
+          this.vertices = [
+            {x: centerX, y: centerY - r, label: 'A'},
+            {x: centerX + r, y: centerY, label: 'B'},
+            {x: centerX, y: centerY + r, label: 'C'},
+            {x: centerX - r, y: centerY, label: 'D'}
+          ];
+          break;
+
+        case 'arbitrary':
+          this.vertices = [
+            {x: centerX - 60, y: centerY - 40, label: 'A'},
+            {x: centerX + 80, y: centerY - 30, label: 'B'},
+            {x: centerX + 50, y: centerY + 60, label: 'C'},
+            {x: centerX - 70, y: centerY + 40, label: 'D'}
+          ];
+          break;
+      }
+    }
+
+    draw() {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      // Draw quadrilateral
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.vertices[0].x, this.vertices[0].y);
+      for (let i = 1; i < this.vertices.length; i++) {
+        this.ctx.lineTo(this.vertices[i].x, this.vertices[i].y);
+      }
+      this.ctx.closePath();
+      this.ctx.strokeStyle = '#2d3748';
+      this.ctx.lineWidth = 3;
+      this.ctx.stroke();
+      this.ctx.fillStyle = 'rgba(66, 153, 225, 0.1)';
+      this.ctx.fill();
+
+      // Draw based on current highlight
+      if (this.currentHighlight) {
+        this.drawHighlight();
+      }
+
+      // Draw vertices
+      this.vertices.forEach(vertex => {
+        this.ctx.beginPath();
+        this.ctx.arc(vertex.x, vertex.y, 8, 0, 2 * Math.PI);
+        this.ctx.fillStyle = '#ff6b6b';
+        this.ctx.fill();
+        this.ctx.strokeStyle = 'white';
+        this.ctx.lineWidth = 2;
+        this.ctx.stroke();
+
+        // Draw labels
+        this.ctx.fillStyle = '#1a202c';
+        this.ctx.font = 'bold 16px Arial';
+        this.ctx.fillText(vertex.label, vertex.x + 12, vertex.y - 8);
+      });
+    }
+
+    drawHighlight() {
+      const h = this.currentHighlight;
+      this.ctx.save();
+
+      switch(h.type) {
+        case 'vertex':
+          this.highlightVertex(h.index);
+          break;
+        case 'side':
+          this.highlightSide(h.index);
+          break;
+        case 'diagonal':
+          this.highlightDiagonals();
+          break;
+        case 'all-vertices':
+          this.highlightAllVertices();
+          break;
+        case 'all-sides':
+          this.highlightAllSides();
+          break;
+      }
+
+      this.ctx.restore();
+    }
+
+    highlightVertex(index) {
+      const vertex = this.vertices[index];
+
+      // Highlight clicked vertex
+      this.ctx.beginPath();
+      this.ctx.arc(vertex.x, vertex.y, 12, 0, 2 * Math.PI);
+      this.ctx.fillStyle = '#ff6b6b';
+      this.ctx.fill();
+
+      // Highlight adjacent vertices
+      const prev = this.vertices[(index - 1 + 4) % 4];
+      const next = this.vertices[(index + 1) % 4];
+
+      [prev, next].forEach(v => {
+        this.ctx.beginPath();
+        this.ctx.arc(v.x, v.y, 10, 0, 2 * Math.PI);
+        this.ctx.fillStyle = '#ff8c42';
+        this.ctx.fill();
+      });
+
+      // Highlight opposite vertex
+      const opposite = this.vertices[(index + 2) % 4];
+      this.ctx.beginPath();
+      this.ctx.arc(opposite.x, opposite.y, 10, 0, 2 * Math.PI);
+      this.ctx.fillStyle = '#a8e6cf';
+      this.ctx.fill();
+    }
+
+    highlightSide(index) {
+      const start = this.vertices[index];
+      const end = this.vertices[(index + 1) % 4];
+
+      // Highlight clicked side
+      this.ctx.beginPath();
+      this.ctx.moveTo(start.x, start.y);
+      this.ctx.lineTo(end.x, end.y);
+      this.ctx.strokeStyle = '#4ecdc4';
+      this.ctx.lineWidth = 6;
+      this.ctx.stroke();
+
+      // Highlight adjacent sides
+      const prevIndex = (index - 1 + 4) % 4;
+      const nextIndex = (index + 1) % 4;
+
+      [prevIndex, nextIndex].forEach(i => {
+        const s = this.vertices[i];
+        const e = this.vertices[(i + 1) % 4];
+        this.ctx.beginPath();
+        this.ctx.moveTo(s.x, s.y);
+        this.ctx.lineTo(e.x, e.y);
+        this.ctx.strokeStyle = '#ff8c42';
+        this.ctx.lineWidth = 4;
+        this.ctx.stroke();
+      });
+
+      // Highlight opposite side
+      const oppositeIndex = (index + 2) % 4;
+      const oppStart = this.vertices[oppositeIndex];
+      const oppEnd = this.vertices[(oppositeIndex + 1) % 4];
+      this.ctx.beginPath();
+      this.ctx.moveTo(oppStart.x, oppStart.y);
+      this.ctx.lineTo(oppEnd.x, oppEnd.y);
+      this.ctx.strokeStyle = '#a8e6cf';
+      this.ctx.lineWidth = 4;
+      this.ctx.stroke();
+    }
+
+    highlightDiagonals() {
+      // Diagonal AC
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.vertices[0].x, this.vertices[0].y);
+      this.ctx.lineTo(this.vertices[2].x, this.vertices[2].y);
+      this.ctx.strokeStyle = '#ffe66d';
+      this.ctx.lineWidth = 4;
+      this.ctx.setLineDash([8, 4]);
+      this.ctx.stroke();
+
+      // Diagonal BD
+      this.ctx.beginPath();
+      this.ctx.moveTo(this.vertices[1].x, this.vertices[1].y);
+      this.ctx.lineTo(this.vertices[3].x, this.vertices[3].y);
+      this.ctx.strokeStyle = '#ffe66d';
+      this.ctx.lineWidth = 4;
+      this.ctx.stroke();
+
+      this.ctx.setLineDash([]);
+    }
+
+    highlightAllVertices() {
+      this.vertices.forEach(vertex => {
+        this.ctx.beginPath();
+        this.ctx.arc(vertex.x, vertex.y, 12, 0, 2 * Math.PI);
+        this.ctx.fillStyle = '#ff6b6b';
+        this.ctx.fill();
+      });
+    }
+
+    highlightAllSides() {
+      for (let i = 0; i < 4; i++) {
+        const start = this.vertices[i];
+        const end = this.vertices[(i + 1) % 4];
+        this.ctx.beginPath();
+        this.ctx.moveTo(start.x, start.y);
+        this.ctx.lineTo(end.x, end.y);
+        this.ctx.strokeStyle = '#4ecdc4';
+        this.ctx.lineWidth = 6;
+        this.ctx.stroke();
+      }
+    }
+
+    handleClick(e) {
+      const rect = this.canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // Check vertex click
+      for (let i = 0; i < this.vertices.length; i++) {
+        const vertex = this.vertices[i];
+        const distance = Math.sqrt((x - vertex.x) ** 2 + (y - vertex.y) ** 2);
+        if (distance < 15) {
+          this.showVertexInfo(i);
+          return;
+        }
+      }
+
+      // Check side click
+      for (let i = 0; i < 4; i++) {
+        if (this.isPointOnSide(x, y, i)) {
+          this.showSideInfo(i);
+          return;
+        }
+      }
+
+      // Check if inside quadrilateral
+      if (this.isPointInside(x, y)) {
+        this.showGeneralInfo();
+        return;
+      }
+
+      // Click outside - show diagonals
+      this.showDiagonalInfo();
+    }
+
+    isPointOnSide(x, y, sideIndex) {
+      const start = this.vertices[sideIndex];
+      const end = this.vertices[(sideIndex + 1) % 4];
+
+      const distance = this.pointToLineDistance(x, y, start.x, start.y, end.x, end.y);
+
+      // Check if point is within the line segment bounds
+      const minX = Math.min(start.x, end.x) - 10;
+      const maxX = Math.max(start.x, end.x) + 10;
+      const minY = Math.min(start.y, end.y) - 10;
+      const maxY = Math.max(start.y, end.y) + 10;
+
+      return distance < 10 && x >= minX && x <= maxX && y >= minY && y <= maxY;
+    }
+
+    pointToLineDistance(px, py, x1, y1, x2, y2) {
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const length = Math.sqrt(dx * dx + dy * dy);
+      if (length === 0) return Math.sqrt((px - x1) ** 2 + (py - y1) ** 2);
+
+      const t = Math.max(0, Math.min(1, ((px - x1) * dx + (py - y1) * dy) / (length * length)));
+      const projection = { x: x1 + t * dx, y: y1 + t * dy };
+      return Math.sqrt((px - projection.x) ** 2 + (py - projection.y) ** 2);
+    }
+
+    isPointInside(x, y) {
+      let inside = false;
+      for (let i = 0, j = 3; i < 4; j = i++) {
+        const xi = this.vertices[i].x, yi = this.vertices[i].y;
+        const xj = this.vertices[j].x, yj = this.vertices[j].y;
+
+        if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) {
+          inside = !inside;
+        }
+      }
+      return inside;
+    }
+
+    showVertexInfo(index) {
+      const vertex = this.vertices[index];
+      const adjacent = [
+        this.vertices[(index - 1 + 4) % 4].label,
+        this.vertices[(index + 1) % 4].label
+      ];
+      const opposite = this.vertices[(index + 2) % 4].label;
+
+      this.currentHighlight = { type: 'vertex', index: index };
+      this.draw();
+
+      this.infoDiv.innerHTML = `
+                    <strong>Вершина ${vertex.label}</strong><br>
+                    📍 <span style="color: #ff8c42">Сусідні вершини:</span> ${adjacent.join(', ')}<br>
+                    📍 <span style="color: #a8e6cf">Протилежна вершина:</span> ${opposite}<br>
+                    📝 Вершина - це точка з'єднання двох сторін
+                `;
+    }
+
+    showSideInfo(index) {
+      const sideNames = ['AB', 'BC', 'CD', 'DA'];
+      const currentSide = sideNames[index];
+      const adjacent = [
+        sideNames[(index - 1 + 4) % 4],
+        sideNames[(index + 1) % 4]
+      ];
+      const opposite = sideNames[(index + 2) % 4];
+
+      this.currentHighlight = { type: 'side', index: index };
+      this.draw();
+
+      this.infoDiv.innerHTML = `
+                    <strong>Сторона ${currentSide}</strong><br>
+                    📏 <span style="color: #ff8c42">Сусідні сторони:</span> ${adjacent.join(', ')}<br>
+                    📏 <span style="color: #a8e6cf">Протилежна сторона:</span> ${opposite}<br>
+                    📝 Сусідні сторони мають спільну вершину
+                `;
+    }
+
+    showDiagonalInfo() {
+      this.currentHighlight = { type: 'diagonal' };
+      this.draw();
+
+      this.infoDiv.innerHTML = `
+                    <strong>Діагоналі чотирикутника</strong><br>
+                    ↗️ <span style="color: #ffe66d">Діагональ AC:</span> з'єднує протилежні вершини A і C<br>
+                    ↙️ <span style="color: #ffe66d">Діагональ BD:</span> з'єднує протилежні вершини B і D<br>
+                    📝 Діагональ - відрізок між протилежними вершинами
+                `;
+    }
+
+    showGeneralInfo() {
+      this.currentHighlight = { type: 'all-sides' };
+      this.draw();
+
+      const shapeInfo = {
+        'square': 'Квадрат - всі сторони рівні, всі кути 90°',
+        'rectangle': 'Прямокутник - протилежні сторони рівні, всі кути 90°',
+        'rhombus': 'Ромб - всі сторони рівні, протилежні кути рівні',
+        'arbitrary': 'Довільний чотирикутник - загальний випадок'
+      };
+
+      this.infoDiv.innerHTML = `
+                    <strong>${shapeInfo[this.shapeType]}</strong><br>
+                    🔷 <span style="color: #4ecdc4">Сторони:</span> AB, BC, CD, DA<br>
+                    🔴 <span style="color: #ff6b6b">Вершини:</span> A, B, C, D<br>
+                    📝 Чотирикутник має 4 вершини, 4 сторони і 2 діагоналі
+                `;
+    }
+  }
+
+  // Initialize all shapes
+  window.addEventListener('load', () => {
+    new QuadrilateralTeacher('square', 'square');
+    new QuadrilateralTeacher('rectangle', 'rectangle');
+    new QuadrilateralTeacher('rhombus', 'rhombus');
+    new QuadrilateralTeacher('arbitrary', 'arbitrary');
+  });
+</script>
+</body>
+</html>
