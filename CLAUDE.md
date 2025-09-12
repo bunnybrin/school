@@ -113,10 +113,13 @@ The geometry lesson implements the original QuadrilateralTeacher functionality u
 ## Deployment
 
 **GitHub Actions**: Automatic deployment configured via `.github/workflows/deploy.yml`
-- **Trigger**: Push to main branch
-- **Process**: Build → Deploy to GitHub Pages
+- **Trigger**: Push to main branch  
+- **Process**: Build → Deploy via gh-pages to gh-pages branch
 - **URL**: https://bunnybrin.github.io/school/
 
-**Vite Configuration**: 
-- `base: '/school/'` for GitHub Pages subpath routing
-- Build output to `dist/` directory
+**Configuration**:
+- **Vite**: `base: '/school/'` for GitHub Pages subpath routing
+- **Router**: `createWebHistory('/school/')` for correct routing
+- **Source**: Deploy from `gh-pages` branch (set in GitHub Settings → Pages)
+
+**Important**: GitHub Pages should be configured to deploy from `gh-pages` branch, not GitHub Actions source.
