@@ -30,9 +30,13 @@ npm run build
 # Preview production build
 npm run preview
 
-# Deploy to GitHub Pages
+# Deploy to GitHub Pages (manual)
 npm run deploy
 # Builds and deploys to gh-pages branch
+
+# Automatic deployment via GitHub Actions
+# Triggers on push to main branch
+# See .github/workflows/deploy.yml
 ```
 
 ## Architecture
@@ -105,3 +109,14 @@ The geometry lesson implements the original QuadrilateralTeacher functionality u
 - **UI Text**: Ukrainian
 - **Code**: English (variables, functions, comments)
 - **Educational Content**: Ukrainian
+
+## Deployment
+
+**GitHub Actions**: Automatic deployment configured via `.github/workflows/deploy.yml`
+- **Trigger**: Push to main branch
+- **Process**: Build → Deploy to GitHub Pages
+- **URL**: https://bunnybrin.github.io/school/
+
+**Vite Configuration**: 
+- `base: '/school/'` for GitHub Pages subpath routing
+- Build output to `dist/` directory
