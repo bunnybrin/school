@@ -22,7 +22,7 @@ npm install
 
 # Start development server with HMR
 npm run dev
-# Runs on http://localhost:3000
+# Runs on http://localhost:5173
 
 # Build for production
 npm run build
@@ -113,8 +113,7 @@ The geometry lesson implements the original QuadrilateralTeacher functionality u
 ## Deployment
 
 **GitHub Actions**: Automatic deployment configured via `.github/workflows/deploy.yml`
-- **Trigger**: Push to main branch  
-- **Process**: Build → Deploy via gh-pages to gh-pages branch
+- **Trigger**: npm run deploy
 - **URL**: https://bunnybrin.github.io/school/
 
 **Configuration**:
