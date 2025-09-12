@@ -29,6 +29,10 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Deploy to GitHub Pages
+npm run deploy
+# Builds and deploys to gh-pages branch
 ```
 
 ## Architecture
