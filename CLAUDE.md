@@ -89,11 +89,12 @@ The geometry lesson implements the original QuadrilateralTeacher functionality u
 
 ## Code Style
 
-- Vue 3 Composition API with `<script setup>` syntax where appropriate
-- JavaScript ES6+ features (destructuring, arrow functions, async/await)
-- Modular composables following single responsibility principle
-- CSS Grid and Flexbox for responsive layouts
-- Ukrainian language content with English code variables
+- **Vue 3 Composition API**: All components use `<script setup>` syntax exclusively
+- **JavaScript ES6+**: destructuring, arrow functions, async/await, const/let
+- **Modular composables**: Single responsibility principle with reusable logic
+- **Props & Emits**: Using `defineProps()` and `defineEmits()` compiler macros
+- **CSS**: Grid and Flexbox for responsive layouts
+- **Naming**: Ukrainian UI text with English code variables
 
 ## Content Languages
 

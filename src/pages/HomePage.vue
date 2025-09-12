@@ -39,8 +39,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HomePage'
-}
+<script setup>
+// Pure template component - no logic needed
 </script>

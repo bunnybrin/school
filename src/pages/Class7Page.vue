@@ -13,8 +13,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Class7Page'
-}
+<script setup>
+// Pure template component - no logic needed
 </script>

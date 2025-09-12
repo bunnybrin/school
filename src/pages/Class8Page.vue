@@ -30,46 +30,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import GeometryLesson from '../components/geometry/GeometryLesson.vue'
 
-export default {
-  name: 'Class8Page',
-  components: {
-    GeometryLesson
-  },
-  props: {
-    subject: {
-      type: String,
-      default: 'geometry'
-    }
-  },
-  setup(props) {
-    const route = useRoute()
-    
-    const currentSubject = computed(() => {
-      return props.subject || route.path.split('/').pop() || 'geometry'
-    })
-    
-    const currentComponent = computed(() => {
-      switch (currentSubject.value) {
-        case 'geometry':
-          return 'GeometryLesson'
-        case 'algebra':
-          return 'div' // Placeholder
-        case 'computer-science':
-          return 'div' // Placeholder
-        default:
-          return 'GeometryLesson'
-      }
-    })
-    
-    return {
-      currentSubject,
-      currentComponent
-    }
+const props = defineProps({
+  subject: {
+    type: String,
+    default: 'geometry'
   }
-}
+})
+
+const route = useRoute()
+
+const currentSubject = computed(() => {
+  return props.subject || route.path.split('/').pop() || 'geometry'
+})
+
+const currentComponent = computed(() => {
+  switch (currentSubject.value) {
+    case 'geometry':
+      return GeometryLesson
+    case 'algebra':
+      return 'div' // Placeholder
+    case 'computer-science':
+      return 'div' // Placeholder
+    default:
+      return GeometryLesson
+  }
+})
 </script>

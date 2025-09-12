@@ -19,10 +19,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'App'
-}
+<script setup>
+// Pure template component - no logic needed
 </script>
 
 <style>

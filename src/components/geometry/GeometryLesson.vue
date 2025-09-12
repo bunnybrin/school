@@ -44,25 +44,13 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import QuadrilateralCanvas from './QuadrilateralCanvas.vue'
 
-export default {
-  name: 'GeometryLesson',
-  components: {
-    QuadrilateralCanvas
-  },
-  setup() {
-    const shapes = [
-      { type: 'square', title: 'Квадрат' },
-      { type: 'rectangle', title: 'Прямокутник' },
-      { type: 'rhombus', title: 'Ромб' },
-      { type: 'arbitrary', title: 'Довільний чотирикутник' }
-    ]
-    
-    return {
-      shapes
-    }
-  }
-}
+const shapes = [
+  { type: 'square', title: 'Квадрат' },
+  { type: 'rectangle', title: 'Прямокутник' },
+  { type: 'rhombus', title: 'Ромб' },
+  { type: 'arbitrary', title: 'Довільний чотирикутник' }
+]
 </script>
