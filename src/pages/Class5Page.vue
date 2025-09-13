@@ -34,7 +34,7 @@
       </div>
     </div>
 
-    <ComputerScienceLesson5 v-if="currentLesson === 'info'" />
+    <InformationAndMessages v-if="currentLesson === 'info'" />
     <ComputerComponentsLesson v-if="currentLesson === 'computer'" />
     <OperatingSystemLesson v-if="currentLesson === 'os'" />
     <FilesAndFoldersLesson v-if="currentLesson === 'files'" />
@@ -43,7 +43,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import ComputerScienceLesson5 from '../components/computerscience5/ComputerScienceLesson5.vue'
+import InformationAndMessages from '../components/computerscience5/InformationAndMessages.vue'
 import ComputerComponentsLesson from '../components/computerscience5/ComputerComponentsLesson.vue'
 import OperatingSystemLesson from '../components/computerscience5/OperatingSystemLesson.vue'
 import FilesAndFoldersLesson from '../components/computerscience5/FilesAndFoldersLesson.vue'
