@@ -205,6 +205,31 @@ h1 {
     -webkit-overflow-scrolling: touch;
 }
 
+.subject-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.subject-main {
+    font-weight: bold;
+    color: #2d3748;
+    font-size: 1.1em;
+    padding: 8px 12px;
+    background: #f7fafc;
+    border-radius: 6px;
+    border-left: 4px solid #4fd1c7;
+}
+
+.subject-submenu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-left: 16px;
+    padding-left: 12px;
+    border-left: 2px solid #e2e8f0;
+}
+
 @media (min-width: 768px) {
     .subject-nav {
         flex-direction: row;
@@ -213,6 +238,21 @@ h1 {
         padding: 20px;
         border-radius: 10px;
         overflow-x: visible;
+        align-items: flex-start;
+    }
+
+    .subject-group {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .subject-submenu {
+        flex-direction: row;
+        gap: 8px;
+        margin-left: 0;
+        padding-left: 0;
+        border-left: none;
+        margin-top: 4px;
     }
 }
 
@@ -240,6 +280,25 @@ h1 {
 .subject-link.active {
     background: #4fd1c7;
     color: white;
+}
+
+.subject-link.main-subject {
+    font-weight: 600;
+    font-size: 1em;
+}
+
+.subject-submenu .subject-link {
+    font-size: 0.85em;
+    padding: 8px 14px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+
+.subject-submenu .subject-link:hover,
+.subject-submenu .subject-link.active {
+    background: #2d3748;
+    color: white;
+    border-color: #2d3748;
 }
 
 .home-grid {

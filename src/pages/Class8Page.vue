@@ -2,23 +2,35 @@
   <div>
     <div class="container" style="margin-bottom: 0; border-radius: 15px 15px 0 0;">
       <div class="subject-nav">
-        <router-link 
-          :to="'/8-class/geometry'" 
-          class="subject-link"
-          :class="{ active: currentSubject === 'geometry' }"
-        >
-          📐 Геометрія
-        </router-link>
-        <router-link 
-          :to="'/8-class/algebra'" 
-          class="subject-link"
+        <div class="subject-group">
+          <div class="subject-main">📐 Геометрія</div>
+          <div class="subject-submenu">
+            <router-link
+              :to="'/8-class/geometry'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'geometry' }"
+            >
+              🎯 Інтерактивні чотирикутники
+            </router-link>
+            <router-link
+              :to="'/8-class/geometry-theory'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'geometry-theory' }"
+            >
+              📚 Теорія чотирикутників
+            </router-link>
+          </div>
+        </div>
+        <router-link
+          :to="'/8-class/algebra'"
+          class="subject-link main-subject"
           :class="{ active: currentSubject === 'algebra' }"
         >
           🧮 Алгебра
         </router-link>
-        <router-link 
-          :to="'/8-class/computer-science'" 
-          class="subject-link"
+        <router-link
+          :to="'/8-class/computer-science'"
+          class="subject-link main-subject"
           :class="{ active: currentSubject === 'computer-science' }"
         >
           💻 Комп'ютерна наука
@@ -34,6 +46,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import GeometryLesson from '../components/geometry/GeometryLesson.vue'
+import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTheoryLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 
 const props = defineProps({
@@ -53,6 +66,8 @@ const currentComponent = computed(() => {
   switch (currentSubject.value) {
     case 'geometry':
       return GeometryLesson
+    case 'geometry-theory':
+      return QuadrilateralsTheoryLesson
     case 'algebra':
       return AlgebraLessons
     case 'computer-science':
