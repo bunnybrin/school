@@ -19,6 +19,13 @@
             >
               📚 Теорія чотирикутників
             </router-link>
+            <router-link
+              :to="'/8-class/geometry-parallelogram'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'geometry-parallelogram' }"
+            >
+              📐 Паралелограми та їх властивості
+            </router-link>
           </div>
         </div>
         <router-link
@@ -47,6 +54,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import GeometryLesson from '../components/geometry/GeometryLesson.vue'
 import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTheoryLesson.vue'
+import ParallelogramLesson from '../components/geometry8/ParallelogramLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 
 const props = defineProps({
@@ -68,6 +76,8 @@ const currentComponent = computed(() => {
       return GeometryLesson
     case 'geometry-theory':
       return QuadrilateralsTheoryLesson
+    case 'geometry-parallelogram':
+      return ParallelogramLesson
     case 'algebra':
       return AlgebraLessons
     case 'computer-science':

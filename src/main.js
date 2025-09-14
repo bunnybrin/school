@@ -19,6 +19,7 @@ const routes = [
   { path: '/8-class', component: Class8Page },
   { path: '/8-class/geometry', component: Class8Page, props: { subject: 'geometry' } },
   { path: '/8-class/geometry-theory', component: Class8Page, props: { subject: 'geometry-theory' } },
+  { path: '/8-class/geometry-parallelogram', component: Class8Page, props: { subject: 'geometry-parallelogram' } },
   { path: '/8-class/algebra', component: Class8Page, props: { subject: 'algebra' } },
   { path: '/8-class/computer-science', component: Class8Page, props: { subject: 'computer-science' } },
   { path: '/9-class', component: Class9Page }
