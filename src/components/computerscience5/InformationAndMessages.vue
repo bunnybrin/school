@@ -208,15 +208,6 @@
 </script>
 
 <style scoped>
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  background: white;
-  border-radius: 8px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
 .section {
   margin-bottom: 40px;
