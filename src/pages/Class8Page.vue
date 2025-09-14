@@ -34,6 +34,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import GeometryLesson from '../components/geometry/GeometryLesson.vue'
+import AlgebraLesson from '../components/algebra8/AlgebraLesson.vue'
 
 const props = defineProps({
   subject: {
@@ -53,7 +54,7 @@ const currentComponent = computed(() => {
     case 'geometry':
       return GeometryLesson
     case 'algebra':
-      return 'div' // Placeholder
+      return AlgebraLesson
     case 'computer-science':
       return 'div' // Placeholder
     default:

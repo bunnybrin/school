@@ -45,6 +45,16 @@
         <h3>Перевірка достовірності</h3>
         <p>Фактчекінг, правило трьох джерел та навички критичного мислення в цифровій епосі</p>
       </div>
+
+      <div
+          class="lesson-card"
+          :class="{ active: currentLesson === 'email' }"
+          @click="currentLesson = 'email'"
+      >
+        <span class="lesson-icon">📧</span>
+        <h3>Електронне листування</h3>
+        <p>Основи роботи з електронною поштою, етикет листування та правила безпечного спілкування</p>
+      </div>
     </div>
 
     <div class="lesson-content">
@@ -52,6 +62,7 @@
       <AdvancedSearchLesson v-if="currentLesson === 'advanced'"/>
       <SourcesAndBookmarksLesson v-if="currentLesson === 'sources'"/>
       <FactCheckingLesson v-if="currentLesson === 'factcheck'"/>
+      <EmailCommunicationLesson v-if="currentLesson === 'email'"/>
     </div>
   </div>
 </template>
@@ -62,6 +73,7 @@ import InternetSearchLesson from '../components/computerscience7/InternetSearchL
 import AdvancedSearchLesson from '../components/computerscience7/AdvancedSearchLesson.vue'
 import SourcesAndBookmarksLesson from '../components/computerscience7/SourcesAndBookmarksLesson.vue'
 import FactCheckingLesson from '../components/computerscience7/FactCheckingLesson.vue'
+import EmailCommunicationLesson from '../components/computerscience7/EmailCommunicationLesson.vue'
 
 const currentLesson = ref('search')
 </script>
