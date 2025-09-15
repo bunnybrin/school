@@ -23,7 +23,7 @@ const routes = [
   { path: '/8-class/algebra', component: Class8Page, props: { subject: 'algebra' } },
   { path: '/8-class/computer-science', component: Class8Page, props: { subject: 'computer-science' } },
   { path: '/9-class', component: Class9Page },
-  { path: '/8-class/geometry-solutions', component: import('./pages/GeometrySolutions.vue') },
+  { path: '/8-class/solutions', component: import('./pages/Solutions.vue') },
 ]
 
 const router = createRouter({

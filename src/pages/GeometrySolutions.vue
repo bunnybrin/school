@@ -17,7 +17,7 @@ const getImageUrl = (imageName) => {
 }
 
 const data = computed(() => {
-  return new Array(367).fill(0).map((item, i) => {
+  return new Array(178).fill(0).map((item, i) => {
 
     let index = i + 1
 
@@ -34,6 +34,8 @@ const data = computed(() => {
 console.log(data.value.map(item => item.solution).slice(0, 10))
 
 window.transformJSArrayToBachArray = () => {
+  console.log('Geometry Solutions:')
+
   return "urls=(",
       data.value.map(item => `"${item.solution}"`).join("\n  "),
       ")"
@@ -53,6 +55,9 @@ window.transformJSArrayToBachArray = () => {
     gap: 20px;
     flex-direction: column;
     align-items: center;
+  }
+  &__number {
+    margin: 0;
   }
 }
 
