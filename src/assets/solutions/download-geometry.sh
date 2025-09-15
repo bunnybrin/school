@@ -372,8 +372,8 @@ urls=(
 )
 
 # Папка для збереження
-mkdir -p downloads
-cd downloads
+mkdir -p geometry
+cd geometry
 
 # Завантаження
 for url in "${urls[@]}"; do
@@ -381,4 +381,4 @@ for url in "${urls[@]}"; do
   curl -O "$url"
 done
 
-echo "✅ Усі файли збережено у папці downloads/"
+echo "✅ Усі файли збережено у папці geometry/"

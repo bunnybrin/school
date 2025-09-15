@@ -13,7 +13,7 @@
 import { computed } from "vue";
 
 const getImageUrl = (imageName) => {
-  return new URL(`../assets/solutions/downloads/${imageName}`, import.meta.url).href
+  return new URL(`../assets/solutions/geometry/${imageName}`, import.meta.url).href
 }
 
 const data = computed(() => {
