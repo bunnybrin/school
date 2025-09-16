@@ -56,6 +56,7 @@ import GeometryLesson from '../components/geometry/GeometryLesson.vue'
 import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTheoryLesson.vue'
 import ParallelogramLesson from '../components/geometry8/ParallelogramLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
+import BinaryCodingLesson from '../components/computerscience8/BinaryCodingLesson.vue'
 
 const props = defineProps({
   subject: {
@@ -81,7 +82,7 @@ const currentComponent = computed(() => {
     case 'algebra':
       return AlgebraLessons
     case 'computer-science':
-      return 'div' // Placeholder
+      return BinaryCodingLesson
     default:
       return GeometryLesson
   }
