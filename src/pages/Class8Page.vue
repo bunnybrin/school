@@ -26,6 +26,13 @@
             >
               📐 Паралелограми та їх властивості
             </router-link>
+            <router-link
+              :to="'/8-class/geometry-rectangle'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'geometry-rectangle' }"
+            >
+              ⬜ Прямокутники та їх властивості
+            </router-link>
           </div>
         </div>
         <router-link
@@ -55,6 +62,7 @@ import { useRoute } from 'vue-router'
 import GeometryLesson from '../components/geometry/GeometryLesson.vue'
 import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTheoryLesson.vue'
 import ParallelogramLesson from '../components/geometry/ParallelogramLesson.vue'
+import RectangleLesson from '../components/geometry/RectangleLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 import BinaryCodingLesson from '../components/computerscience8/BinaryCodingLesson.vue'
 
@@ -79,6 +87,8 @@ const currentComponent = computed(() => {
       return QuadrilateralsTheoryLesson
     case 'geometry-parallelogram':
       return ParallelogramLesson
+    case 'geometry-rectangle':
+      return RectangleLesson
     case 'algebra':
       return AlgebraLessons
     case 'computer-science':
