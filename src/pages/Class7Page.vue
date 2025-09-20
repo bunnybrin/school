@@ -8,6 +8,16 @@
     <div class="lesson-navigation">
       <div
           class="lesson-card"
+          :class="{ active: currentLesson === 'onlineDocs' }"
+          @click="currentLesson = 'onlineDocs'"
+      >
+        <span class="lesson-icon">📝</span>
+        <h3>Онлайн-документи</h3>
+        <p>Створення файлів у браузері, робота з Google Диском і керування спільним доступом</p>
+      </div>
+
+      <div
+          class="lesson-card"
           :class="{ active: currentLesson === 'cloud' }"
           @click="currentLesson = 'cloud'"
       >
@@ -68,6 +78,7 @@
     </div>
 
     <div class="lesson-content">
+      <OnlineDocumentsLesson v-if="currentLesson === 'onlineDocs'"/>
       <CloudServicesLesson v-if="currentLesson === 'cloud'"/>
       <InternetSearchLesson v-if="currentLesson === 'search'"/>
       <AdvancedSearchLesson v-if="currentLesson === 'advanced'"/>
@@ -80,6 +91,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import OnlineDocumentsLesson from '../components/computerscience7/OnlineDocumentsLesson.vue'
 import CloudServicesLesson from '../components/computerscience7/CloudServicesLesson.vue'
 import InternetSearchLesson from '../components/computerscience7/InternetSearchLesson.vue'
 import AdvancedSearchLesson from '../components/computerscience7/AdvancedSearchLesson.vue'
@@ -87,7 +99,7 @@ import SourcesAndBookmarksLesson from '../components/computerscience7/SourcesAnd
 import FactCheckingLesson from '../components/computerscience7/FactCheckingLesson.vue'
 import EmailCommunicationLesson from '../components/computerscience7/EmailCommunicationLesson.vue'
 
-const currentLesson = ref('cloud')
+const currentLesson = ref('onlineDocs')
 </script>
 
 <style scoped>
