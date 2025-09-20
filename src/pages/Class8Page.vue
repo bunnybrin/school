@@ -54,7 +54,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import GeometryLesson from '../components/geometry/GeometryLesson.vue'
 import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTheoryLesson.vue'
-import ParallelogramLesson from '../components/geometry8/ParallelogramLesson.vue'
+import ParallelogramLesson from '../components/geometry/ParallelogramLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 import BinaryCodingLesson from '../components/computerscience8/BinaryCodingLesson.vue'
 
