@@ -31,6 +31,12 @@
         >
           📁 Урок 4: Файли, папки, операції над ними
         </button>
+        <button
+          @click="currentLesson = 'applications'"
+          :class="['lesson-btn', { active: currentLesson === 'applications' }]"
+        >
+          🛠️ Урок 5: Прикладні комп'ютерні програми
+        </button>
       </div>
     </div>
 
@@ -38,6 +44,7 @@
     <ComputerComponentsLesson v-if="currentLesson === 'computer'" />
     <OperatingSystemLesson v-if="currentLesson === 'os'" />
     <FilesAndFoldersLesson v-if="currentLesson === 'files'" />
+    <ApplicationSoftwareLesson v-if="currentLesson === 'applications'" />
   </div>
 </template>
 
@@ -47,6 +54,7 @@ import InformationAndMessages from '../components/computerscience5/InformationAn
 import ComputerComponentsLesson from '../components/computerscience5/ComputerComponentsLesson.vue'
 import OperatingSystemLesson from '../components/computerscience5/OperatingSystemLesson.vue'
 import FilesAndFoldersLesson from '../components/computerscience5/FilesAndFoldersLesson.vue'
+import ApplicationSoftwareLesson from '../components/computerscience5/ApplicationSoftwareLesson.vue'
 
 const currentLesson = ref('info')
 </script>
