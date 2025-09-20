@@ -8,6 +8,16 @@
     <div class="lesson-navigation">
       <div
           class="lesson-card"
+          :class="{ active: currentLesson === 'cloud' }"
+          @click="currentLesson = 'cloud'"
+      >
+        <span class="lesson-icon">☁️</span>
+        <h3>Хмарні сервіси</h3>
+        <p>Що таке хмарні технології, які бувають сервіси та як працювати з Google Диском</p>
+      </div>
+
+      <div
+          class="lesson-card"
           :class="{ active: currentLesson === 'search' }"
           @click="currentLesson = 'search'"
       >
@@ -58,6 +68,7 @@
     </div>
 
     <div class="lesson-content">
+      <CloudServicesLesson v-if="currentLesson === 'cloud'"/>
       <InternetSearchLesson v-if="currentLesson === 'search'"/>
       <AdvancedSearchLesson v-if="currentLesson === 'advanced'"/>
       <SourcesAndBookmarksLesson v-if="currentLesson === 'sources'"/>
@@ -69,13 +80,14 @@
 
 <script setup>
 import { ref } from 'vue'
+import CloudServicesLesson from '../components/computerscience7/CloudServicesLesson.vue'
 import InternetSearchLesson from '../components/computerscience7/InternetSearchLesson.vue'
 import AdvancedSearchLesson from '../components/computerscience7/AdvancedSearchLesson.vue'
 import SourcesAndBookmarksLesson from '../components/computerscience7/SourcesAndBookmarksLesson.vue'
 import FactCheckingLesson from '../components/computerscience7/FactCheckingLesson.vue'
 import EmailCommunicationLesson from '../components/computerscience7/EmailCommunicationLesson.vue'
 
-const currentLesson = ref('search')
+const currentLesson = ref('cloud')
 </script>
 
 <style scoped>
