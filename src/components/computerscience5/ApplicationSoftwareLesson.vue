@@ -1,6 +1,6 @@
 <template>
   <div class="container application-lesson">
-    <section class="hero">
+    <section id="hero" class="hero">
       <div class="hero-text">
         <h1>💻 Прикладні комп'ютерні програми</h1>
         <p>Уяви, що комп'ютер — це чарівна коробка. Але щоб він щось робив, йому потрібні інструкції. Ці інструкції називаються <strong>програмами</strong>. Усі програми разом називають <strong>програмним забезпеченням</strong>.</p>
@@ -25,7 +25,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="text-programs" class="section">
       <h2>1️⃣ Програми для роботи з текстом</h2>
       <div class="section-content">
         <img :src="textEditorImg" alt="Текстовий редактор" class="section-image" />
@@ -41,7 +41,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="presentation-programs" class="section">
       <h2>2️⃣ Програми для створення презентацій</h2>
       <div class="section-content reverse">
         <img :src="presentationImg" alt="Презентація" class="section-image" />
@@ -56,7 +56,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="painting-programs" class="section">
       <h2>3️⃣ Програми для малювання</h2>
       <div class="section-content">
         <img :src="paintingImg" alt="Малювання" class="section-image" />
@@ -71,7 +71,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="browser-programs" class="section">
       <h2>4️⃣ Програми для подорожей в Інтернеті</h2>
       <div class="section-content reverse">
         <img :src="browserImg" alt="Браузер" class="section-image" />
@@ -87,7 +87,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="learning-programs" class="section">
       <h2>5️⃣ Навчальні програми та комп'ютерні ігри</h2>
       <div class="section-content">
         <img :src="learningToolsImg" alt="Навчальні програми" class="section-image" />
@@ -103,7 +103,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section id="coding-tools" class="section">
       <h2>6️⃣ Програми для створення програм</h2>
       <div class="section-content reverse">
         <img :src="codingImg" alt="Створення програм" class="section-image" />
@@ -117,7 +117,15 @@
       </div>
     </section>
 
-    <section class="final-idea">
+    <section id="quiz-apps" class="section quiz-section">
+      <LessonQuiz
+        title="Тест: Прикладні програми"
+        description="Обери правильні варіанти і скористайся підказкою, щоб повернутися до пояснення."
+        :questions="quizQuestions"
+      />
+    </section>
+
+    <section id="final-idea" class="final-idea">
       <h2>🌟 Головна ідея</h2>
       <p><strong>Прикладні програми</strong> — це наші головні інструменти на комп'ютері, які допомагають нам у роботі, навчанні та розвагах!</p>
     </section>
@@ -132,6 +140,68 @@ import browserImg from '../../assets/computerscience5/application/browser.svg'
 import learningImg from '../../assets/computerscience5/application/learning.svg'
 import learningToolsImg from '../../assets/computerscience5/application/learning-tools.svg'
 import codingImg from '../../assets/computerscience5/application/coding.svg'
+import LessonQuiz from '../common/LessonQuiz.vue'
+
+const quizQuestions = [
+  {
+    question: 'Яку роль відіграє прикладне програмне забезпечення?',
+    options: [
+      'Керує апаратною частиною комп’ютера',
+      'Допомагає користувачам виконувати конкретні завдання',
+      'Відповідає лише за оновлення системи'
+    ],
+    correct: 1,
+    hint: 'У вступному блоці ми зазначали, що прикладні програми допомагають малювати, писати, спілкуватися та вчитися.',
+    sectionId: 'hero'
+  },
+  {
+    question: 'Які програми використовують для створення текстових документів?',
+    options: [
+      'Microsoft Word та Блокнот',
+      'Google Chrome та Mozilla Firefox',
+      'Scratch та Python IDLE'
+    ],
+    correct: 0,
+    hint: 'У розділі про текстові редактори наведено приклади програм для роботи з текстом.',
+    sectionId: 'text-programs'
+  },
+  {
+    question: 'Для чого призначені програми на кшталт PowerPoint чи Impress?',
+    options: [
+      'Для створення та оформлення слайдів презентацій',
+      'Для малювання художніх картин',
+      'Для запуску комп’ютерних ігор'
+    ],
+    correct: 0,
+    hint: 'Другий розділ описує, як ці програми допомагають створювати виступи зі слайдами.',
+    sectionId: 'presentation-programs'
+  },
+  {
+    question: 'Який із наведених прикладів є браузером?',
+    options: ['Paint', 'Google Chrome', 'Scratch'],
+    correct: 1,
+    hint: 'У розділі про подорожі в Інтернеті згадуються браузери: Chrome, Firefox, Opera, Edge.',
+    sectionId: 'browser-programs'
+  },
+  {
+    question: 'Які програми роблять навчання цікавим і допомагають перевіряти знання?',
+    options: [
+      'Електронні підручники, онлайн-тести та відеоуроки',
+      'Медіаплеєри та файлові менеджери',
+      'Операційні системи Windows та Linux'
+    ],
+    correct: 0,
+    hint: 'П’ятий розділ перелічує навчальні програми та ігри як приклади таких застосунків.',
+    sectionId: 'learning-programs'
+  },
+  {
+    question: 'Який інструмент належить до програм для створення інших програм?',
+    options: ['Scratch', 'PowerPoint', 'Word'],
+    correct: 0,
+    hint: 'У шостому розділі згадано середовище Scratch та Python IDLE як інструменти для програмування.',
+    sectionId: 'coding-tools'
+  }
+]
 </script>
 
 <style scoped>
@@ -197,6 +267,12 @@ import codingImg from '../../assets/computerscience5/application/coding.svg'
 .type-card p {
   margin: 0;
   line-height: 1.5;
+}
+
+.quiz-section {
+  background: linear-gradient(135deg, rgba(13, 110, 253, 0.08), rgba(99, 179, 237, 0.08));
+  border-radius: 24px;
+  box-shadow: 0 20px 45px rgba(13, 110, 253, 0.1);
 }
 
 .type-card .emoji {
