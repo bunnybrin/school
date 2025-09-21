@@ -33,6 +33,13 @@
             >
               ⬜ Прямокутники та їх властивості
             </router-link>
+            <router-link
+              :to="'/8-class/geometry-square'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'geometry-square' }"
+            >
+              🟩 Квадрат: властивості та ознаки
+            </router-link>
           </div>
         </div>
         <router-link
@@ -63,6 +70,7 @@ import GeometryLesson from '../components/geometry/GeometryLesson.vue'
 import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTheoryLesson.vue'
 import ParallelogramLesson from '../components/geometry/ParallelogramLesson.vue'
 import RectangleLesson from '../components/geometry/RectangleLesson.vue'
+import SquareLesson from '../components/geometry/SquareLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 import BinaryCodingLesson from '../components/computerscience8/BinaryCodingLesson.vue'
 
@@ -89,6 +97,8 @@ const currentComponent = computed(() => {
       return ParallelogramLesson
     case 'geometry-rectangle':
       return RectangleLesson
+    case 'geometry-square':
+      return SquareLesson
     case 'algebra':
       return AlgebraLessons
     case 'computer-science':
