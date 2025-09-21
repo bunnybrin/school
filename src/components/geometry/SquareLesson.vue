@@ -355,11 +355,11 @@ function drawCombination(canvas) {
   // Квадрат внизу
   drawSquare(canvas, {
     size: 50,
-    strokeColor: '#dc2626',
-    fillColor: 'rgba(220, 38, 38, 0.2)'
+    strokeColor: '#059669',
+    fillColor: 'rgba(5, 150, 105, 0.2)'
   })
 
-  ctx.fillStyle = '#dc2626'
+  ctx.fillStyle = '#059669'
   ctx.font = '14px Arial'
   ctx.fillText('КВАДРАТ', centerX - 30, centerY + 45)
 
@@ -394,7 +394,7 @@ function drawSquareWithProperties(canvas) {
 
   if (currentHighlight.value === 'angles') {
     // Позначаємо прямі кути
-    ctx.strokeStyle = '#059669'
+    ctx.strokeStyle = '#dc2626'
     ctx.lineWidth = 2
     const corner = 12
 
@@ -404,7 +404,7 @@ function drawSquareWithProperties(canvas) {
 
   } else if (currentHighlight.value === 'sides') {
     // Виділяємо всі сторони
-    ctx.strokeStyle = '#059669'
+    ctx.strokeStyle = '#dc2626'
     ctx.lineWidth = 4
 
     for (let i = 0; i < points.length; i++) {
@@ -416,7 +416,7 @@ function drawSquareWithProperties(canvas) {
     }
 
     // Позначки рівності
-    ctx.fillStyle = '#059669'
+    ctx.fillStyle = '#dc2626'
     for (let i = 0; i < points.length; i++) {
       const next = (i + 1) % points.length
       const midX = (points[i][0] + points[next][0]) / 2
@@ -429,7 +429,7 @@ function drawSquareWithProperties(canvas) {
 
   } else if (currentHighlight.value === 'diagonals') {
     // Діагоналі
-    ctx.strokeStyle = '#059669'
+    ctx.strokeStyle = '#dc2626'
     ctx.lineWidth = 3
 
     // AC
@@ -448,13 +448,13 @@ function drawSquareWithProperties(canvas) {
     const centerX = (points[0][0] + points[2][0]) / 2
     const centerY = (points[0][1] + points[2][1]) / 2
 
-    ctx.fillStyle = '#059669'
+    ctx.fillStyle = '#dc2626'
     ctx.beginPath()
     ctx.arc(centerX, centerY, 4, 0, 2 * Math.PI)
     ctx.fill()
 
     // Позначка перпендикулярності
-    ctx.strokeStyle = '#059669'
+    ctx.strokeStyle = '#dc2626'
     ctx.lineWidth = 1
     ctx.strokeRect(centerX - 6, centerY - 6, 12, 12)
 
@@ -509,7 +509,7 @@ function drawCircumscribedCircle(canvas) {
   // Квадрат
   drawSquare(canvas, {
     size: size,
-    strokeColor: '#dc2626',
+    strokeColor: '#059669',
     showLabels: false
   })
 
@@ -540,7 +540,7 @@ function drawInscribedCircle(canvas) {
   // Квадрат
   drawSquare(canvas, {
     size: size,
-    strokeColor: '#dc2626',
+    strokeColor: '#059669',
     showLabels: false
   })
 
@@ -608,7 +608,7 @@ onMounted(async () => {
   padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   min-height: 100vh;
 }
 
@@ -623,14 +623,14 @@ onMounted(async () => {
   padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-  border: 1px solid #fecaca;
+  border: 1px solid #e2e8f0;
 }
 
 .content-section h2 {
   color: #1e293b;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  border-bottom: 3px solid #dc2626;
+  border-bottom: 3px solid #059669;
   padding-bottom: 0.5rem;
 }
 
@@ -645,18 +645,18 @@ onMounted(async () => {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  background: #fef2f2;
+  background: #f8fafc;
   padding: 1.5rem;
   border-radius: 10px;
-  border-left: 5px solid #dc2626;
+  border-left: 5px solid #059669;
   text-align: center;
 }
 
 .definition-box.special {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-  border: 2px solid #dc2626;
-  border-left: 5px solid #dc2626;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border: 2px solid #059669;
+  border-left: 5px solid #059669;
 }
 
 .definition-box p {
@@ -674,7 +674,7 @@ onMounted(async () => {
 }
 
 .property-card {
-  background: #fef2f2;
+  background: #f8fafc;
   padding: 1.5rem;
   border-radius: 12px;
   border: 2px solid transparent;
@@ -683,9 +683,9 @@ onMounted(async () => {
 }
 
 .property-card:hover {
-  border-color: #dc2626;
+  border-color: #059669;
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
+  box-shadow: 0 10px 25px rgba(5, 150, 105, 0.15);
 }
 
 .property-card h3 {
@@ -700,21 +700,21 @@ onMounted(async () => {
 }
 
 .formula {
-  background: #fee2e2;
+  background: #e0f2fe;
   padding: 0.5rem;
   border-radius: 6px;
   font-family: 'Courier New', monospace;
   font-weight: bold;
-  color: #dc2626;
+  color: #059669;
   margin: 0.25rem 0;
 }
 
 .interactive-square {
   text-align: center;
-  background: #fef2f2;
+  background: #f8fafc;
   padding: 1.5rem;
   border-radius: 10px;
-  border: 2px dashed #fca5a5;
+  border: 2px dashed #cbd5e1;
 }
 
 .hint {
