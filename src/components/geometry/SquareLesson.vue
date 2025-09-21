@@ -1,765 +1,859 @@
 <template>
-  <div class="lesson-container">
-    <h1 class="lesson-title">
-      🟩 Квадрат: визначення, властивості та ознаки
-    </h1>
-
-    <section class="definition-section">
-      <h2>📖 Визначення квадрата</h2>
-      <div class="definition-card">
-        <p class="definition-text">
-          <strong>Квадрат</strong> — це окремий вид паралелограма, який поєднує властивості прямокутника та ромба.
-        </p>
-
-        <div class="equivalent-definitions">
-          <h3>🔄 Еквівалентні визначення:</h3>
-          <div class="definition-item">
-            <span class="emoji">📐</span>
-            <span>Квадратом називають <strong>прямокутник</strong>, у якого всі сторони рівні</span>
+  <div class="square-lesson">
+    <div class="lesson-content">
+      <!-- Визначення -->
+      <section class="content-section">
+        <h2>🔍 Визначення квадрата</h2>
+        <div class="definitions-container">
+          <div class="definition-box">
+            <p><strong>Квадрат</strong> — це прямокутник, у якого всі сторони рівні.</p>
+            <canvas ref="definition1Canvas" width="200" height="150"></canvas>
           </div>
-          <div class="definition-item">
-            <span class="emoji">💎</span>
-            <span>Квадрат — це <strong>ромб</strong>, у якого всі кути рівні (прямі)</span>
+
+          <div class="definition-box">
+            <p><strong>Квадрат</strong> — це ромб, у якого всі кути прямі.</p>
+            <canvas ref="definition2Canvas" width="200" height="150"></canvas>
           </div>
-          <div class="definition-item">
-            <span class="emoji">🔗</span>
-            <span>Чотирикутник, який одночасно є <strong>ромбом і прямокутником</strong>, є квадратом</span>
+
+          <div class="definition-box special">
+            <p><strong>Квадрат</strong> — це чотирикутник, який одночасно є і ромбом, і прямокутником.</p>
+            <canvas ref="definition3Canvas" width="200" height="150"></canvas>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="visual-section">
-      <h2>🎨 Інтерактивна візуалізація</h2>
-      <div class="canvas-container">
-        <canvas
-          ref="squareCanvas"
-          width="600"
-          height="400"
-          @click="handleCanvasClick"
-          @mousemove="handleMouseMove"
-        ></canvas>
-        <div class="canvas-info" v-if="hoverInfo">
-          {{ hoverInfo }}
-        </div>
-      </div>
+      <!-- Властивості -->
+      <section class="content-section">
+        <h2>⭐ Властивості квадрата</h2>
+        <p class="intro-text">Оскільки квадрат є одночасно і прямокутником, і ромбом, він має всі властивості цих фігур:</p>
 
-      <div class="controls">
-        <button @click="showAngles = !showAngles" :class="{ active: showAngles }">
-          📐 Показати кути
-        </button>
-        <button @click="showDiagonals = !showDiagonals" :class="{ active: showDiagonals }">
-          ↗️ Показати діагоналі
-        </button>
-        <button @click="showSides = !showSides" :class="{ active: showSides }">
-          📏 Показати сторони
-        </button>
-      </div>
-    </section>
+        <div class="properties-grid">
+          <div class="property-card" @click="highlightProperty('angles')">
+            <h3>📐 Кути</h3>
+            <p>Усі кути квадрата прямі</p>
+            <div class="formula">∠A = ∠B = ∠C = ∠D = 90°</div>
+          </div>
 
-    <section class="properties-section">
-      <h2>⭐ Властивості квадрата</h2>
-      <p class="intro-text">
-        Оскільки квадрат є одночасно прямокутником і ромбом, він має властивості обох фігур:
-      </p>
+          <div class="property-card" @click="highlightProperty('sides')">
+            <h3>📏 Сторони</h3>
+            <p>Усі сторони квадрата рівні</p>
+            <div class="formula">AB = BC = CD = DA</div>
+          </div>
 
-      <div class="properties-grid">
-        <div class="property-card angles" @click="highlightProperty('angles')">
-          <h3>📐 Кути</h3>
-          <p>Усі кути квадрата прямі (90°)</p>
+          <div class="property-card" @click="highlightProperty('diagonals')">
+            <h3>📍 Діагоналі</h3>
+            <p>Діагоналі рівні, перпендикулярні, діляться навпіл та є бісектрисами кутів</p>
+            <div class="formula">AC = BD, AC ⟂ BD</div>
+          </div>
+
+          <div class="property-card" @click="highlightProperty('circles')">
+            <h3>⭕ Кола</h3>
+            <p>Навколо квадрата можна описати коло і в квадрат можна вписати коло</p>
+          </div>
         </div>
 
-        <div class="property-card sides" @click="highlightProperty('sides')">
-          <h3>📏 Сторони</h3>
-          <p>Усі сторони квадрата рівні</p>
+        <div class="interactive-square">
+          <canvas ref="propertiesCanvas" width="400" height="400"></canvas>
+          <p class="hint">💡 Клікни на властивості вище, щоб побачити їх на малюнку!</p>
         </div>
+      </section>
 
-        <div class="property-card diagonals" @click="highlightProperty('diagonals')">
-          <h3>↗️ Діагоналі</h3>
+      <!-- Ознаки квадрата -->
+      <section class="content-section">
+        <h2>✅ Ознаки квадрата</h2>
+        <p class="intro-text">Ознаки допомагають визначити, чи є чотирикутник квадратом:</p>
+
+        <div class="signs-container">
+          <div class="signs-category">
+            <h3>🔷 Ознаки для паралелограма</h3>
+            <div class="sign-item">
+              <div class="sign-number">1️⃣</div>
+              <div class="sign-content">
+                <p>Якщо діагоналі паралелограма рівні та перпендикулярні, то цей паралелограм є квадратом</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="signs-category">
+            <h3>⬜ Ознаки для прямокутника</h3>
+            <div class="sign-item">
+              <div class="sign-number">2️⃣</div>
+              <div class="sign-content">
+                <p>Якщо дві сусідні сторони прямокутника рівні, то цей прямокутник є квадратом</p>
+              </div>
+            </div>
+            <div class="sign-item">
+              <div class="sign-number">3️⃣</div>
+              <div class="sign-content">
+                <p>Якщо діагональ прямокутника ділить його кут навпіл, то цей прямокутник є квадратом</p>
+              </div>
+            </div>
+            <div class="sign-item">
+              <div class="sign-number">4️⃣</div>
+              <div class="sign-content">
+                <p>Якщо в прямокутник можна вписати коло, то він є квадратом</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="signs-category">
+            <h3>🔶 Ознаки для ромба</h3>
+            <div class="sign-item">
+              <div class="sign-number">5️⃣</div>
+              <div class="sign-content">
+                <p>Якщо один із кутів ромба прямий, то цей ромб є квадратом</p>
+              </div>
+            </div>
+            <div class="sign-item">
+              <div class="sign-number">6️⃣</div>
+              <div class="sign-content">
+                <p>Якщо діагоналі ромба рівні, то він є квадратом</p>
+              </div>
+            </div>
+            <div class="sign-item">
+              <div class="sign-number">7️⃣</div>
+              <div class="sign-content">
+                <p>Якщо навколо ромба можна описати коло, то він є квадратом</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Вписане та описане кола -->
+      <section class="content-section">
+        <h2>⭕ Вписане та описане кола</h2>
+        <div class="circles-explanation">
+          <div class="circle-demo">
+            <h3>Описане коло</h3>
+            <p>Коло, що проходить через всі вершини квадрата</p>
+            <canvas ref="circumscribedCanvas" width="200" height="200"></canvas>
+            <div class="formula">R = a√2/2</div>
+          </div>
+
+          <div class="circle-demo">
+            <h3>Вписане коло</h3>
+            <p>Коло, що дотикається до всіх сторін квадрата</p>
+            <canvas ref="inscribedCanvas" width="200" height="200"></canvas>
+            <div class="formula">r = a/2</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Підсумок -->
+      <section class="content-section summary">
+        <h2>📝 Підсумок</h2>
+        <div class="summary-box">
+          <p><strong>Запам'ятай:</strong></p>
           <ul>
-            <li>рівні (як у прямокутника)</li>
-            <li>взаємно перпендикулярні (як у ромба)</li>
-            <li>точкою перетину діляться навпіл</li>
-            <li>є бісектрисами кутів квадрата</li>
+            <li>🔸 Квадрат поєднує властивості прямокутника та ромба</li>
+            <li>🔸 Усі сторони рівні, усі кути прямі</li>
+            <li>🔸 Діагоналі рівні, перпендикулярні та є бісектрисами кутів</li>
+            <li>🔸 Навколо квадрата можна описати коло і в квадрат можна вписати коло</li>
+            <li>🔸 Існує 7 основних ознак для розпізнавання квадрата</li>
           </ul>
         </div>
-
-        <div class="property-card circles" @click="highlightProperty('circles')">
-          <h3>⭕ Кола</h3>
-          <p>Навколо будь-якого квадрата можна описати коло, і в будь-який квадрат можна вписати коло</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="recognition-section">
-      <h2>🔍 Ознаки квадрата</h2>
-      <p class="intro-text">
-        <strong>Ознаки</strong> — це умови, за яких чотирикутник є квадратом.
-      </p>
-
-      <div class="recognition-cards">
-        <div class="recognition-card">
-          <h3>📐 Для паралелограма:</h3>
-          <p>Якщо діагоналі паралелограма рівні та перпендикулярні, то цей паралелограм є квадратом</p>
-        </div>
-
-        <div class="recognition-card">
-          <h3>⬜ Для прямокутника:</h3>
-          <ul>
-            <li>Якщо дві сусідні сторони прямокутника рівні, то він є квадратом</li>
-            <li>Якщо діагональ прямокутника ділить його кут навпіл, то він є квадратом</li>
-            <li>Якщо в прямокутник можна вписати коло, то він є квадратом</li>
-          </ul>
-        </div>
-
-        <div class="recognition-card">
-          <h3>💎 Для ромба:</h3>
-          <ul>
-            <li>Якщо один із кутів ромба прямий, то цей ромб є квадратом</li>
-            <li>Якщо діагоналі ромба рівні, то він є квадратом</li>
-            <li>Якщо навколо ромба можна описати коло, то він є квадратом</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="quiz-section">
-      <h2>🧩 Інтерактивні завдання</h2>
-      <div class="quiz-container">
-        <div class="quiz-question" v-for="(question, index) in quizQuestions" :key="index">
-          <h3>{{ question.question }}</h3>
-          <div class="quiz-options">
-            <button
-              v-for="(option, optIndex) in question.options"
-              :key="optIndex"
-              @click="selectAnswer(index, optIndex)"
-              :class="{
-                correct: question.answered && optIndex === question.correct,
-                incorrect: question.answered && optIndex === question.selected && optIndex !== question.correct,
-                selected: question.selected === optIndex
-              }"
-              :disabled="question.answered"
-            >
-              {{ option }}
-            </button>
-          </div>
-          <div v-if="question.answered" class="explanation">
-            <p><strong>Пояснення:</strong> {{ question.explanation }}</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue'
 
-const squareCanvas = ref(null)
-const showAngles = ref(false)
-const showDiagonals = ref(false)
-const showSides = ref(false)
-const hoverInfo = ref('')
-const highlightedProperty = ref('')
+const definition1Canvas = ref(null)
+const definition2Canvas = ref(null)
+const definition3Canvas = ref(null)
+const propertiesCanvas = ref(null)
+const circumscribedCanvas = ref(null)
+const inscribedCanvas = ref(null)
 
-const quizQuestions = ref([
-  {
-    question: "Яка основна відмінність квадрата від прямокутника?",
-    options: [
-      "У квадрата всі кути прямі",
-      "У квадрата всі сторони рівні",
-      "У квадрата діагоналі рівні",
-      "У квадрата протилежні сторони паралельні"
-    ],
-    correct: 1,
-    explanation: "Квадрат відрізняється від прямокутника тим, що всі його сторони рівні, тоді як у прямокутника рівні лише протилежні сторони.",
-    answered: false,
-    selected: null
-  },
-  {
-    question: "Які властивості мають діагоналі квадрата?",
-    options: [
-      "Тільки рівні",
-      "Тільки перпендикулярні",
-      "Рівні та перпендикулярні",
-      "Не мають особливих властивостей"
-    ],
-    correct: 2,
-    explanation: "Діагоналі квадрата є одночасно рівними (як у прямокутника) та взаємно перпендикулярними (як у ромба).",
-    answered: false,
-    selected: null
-  },
-  {
-    question: "За якою ознакою ромб стає квадратом?",
-    options: [
-      "Коли всі сторони рівні",
-      "Коли діагоналі перпендикулярні",
-      "Коли один з кутів прямий",
-      "Коли діагоналі діляться навпіл"
-    ],
-    correct: 2,
-    explanation: "Ромб стає квадратом, коли один з його кутів стає прямим. У такому випадку всі кути стануть прямими.",
-    answered: false,
-    selected: null
-  }
-])
+const currentHighlight = ref('')
 
-let ctx = null
-let square = null
+function drawSquare(canvas, options = {}) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
 
-onMounted(() => {
-  nextTick(() => {
-    if (squareCanvas.value) {
-      ctx = squareCanvas.value.getContext('2d')
-      initializeSquare()
-      draw()
-    }
-  })
-})
+  ctx.clearRect(0, 0, width, height)
+  ctx.strokeStyle = options.strokeColor || '#059669'
+  ctx.fillStyle = options.fillColor || 'rgba(5, 150, 105, 0.1)'
+  ctx.lineWidth = options.lineWidth || 2
 
-function initializeSquare() {
-  const centerX = 300
-  const centerY = 200
-  const sideLength = 120
+  const centerX = width / 2
+  const centerY = height / 2
+  const size = options.size || 60
 
-  square = {
-    vertices: [
-      { x: centerX - sideLength/2, y: centerY - sideLength/2 },
-      { x: centerX + sideLength/2, y: centerY - sideLength/2 },
-      { x: centerX + sideLength/2, y: centerY + sideLength/2 },
-      { x: centerX - sideLength/2, y: centerY + sideLength/2 }
-    ],
-    center: { x: centerX, y: centerY },
-    sideLength: sideLength
-  }
-}
-
-function draw() {
-  if (!ctx || !square) return
-
-  ctx.clearRect(0, 0, 600, 400)
-
-  // Draw square
-  ctx.strokeStyle = highlightedProperty.value === 'sides' ? '#ff6b6b' : '#2c3e50'
-  ctx.lineWidth = highlightedProperty.value === 'sides' ? 4 : 2
-  ctx.beginPath()
-  ctx.moveTo(square.vertices[0].x, square.vertices[0].y)
-  for (let i = 1; i < square.vertices.length; i++) {
-    ctx.lineTo(square.vertices[i].x, square.vertices[i].y)
-  }
-  ctx.closePath()
-  ctx.stroke()
-
-  // Fill square
-  ctx.fillStyle = 'rgba(52, 152, 219, 0.2)'
-  ctx.fill()
-
-  // Draw vertices
-  ctx.fillStyle = '#e74c3c'
-  square.vertices.forEach(vertex => {
-    ctx.beginPath()
-    ctx.arc(vertex.x, vertex.y, 4, 0, 2 * Math.PI)
-    ctx.fill()
-  })
-
-  // Draw angles if enabled
-  if (showAngles.value || highlightedProperty.value === 'angles') {
-    drawAngles()
-  }
-
-  // Draw diagonals if enabled
-  if (showDiagonals.value || highlightedProperty.value === 'diagonals') {
-    drawDiagonals()
-  }
-
-  // Draw side measurements if enabled
-  if (showSides.value || highlightedProperty.value === 'sides') {
-    drawSideMeasurements()
-  }
-
-  // Draw circles if highlighted
-  if (highlightedProperty.value === 'circles') {
-    drawCircles()
-  }
-}
-
-function drawAngles() {
-  ctx.strokeStyle = '#e74c3c'
-  ctx.lineWidth = 2
-
-  square.vertices.forEach((vertex, i) => {
-    const prev = square.vertices[(i - 1 + 4) % 4]
-    const next = square.vertices[(i + 1) % 4]
-
-    const angle1 = Math.atan2(prev.y - vertex.y, prev.x - vertex.x)
-    const angle2 = Math.atan2(next.y - vertex.y, next.x - vertex.x)
-
-    ctx.beginPath()
-    ctx.arc(vertex.x, vertex.y, 20, angle1, angle2)
-    ctx.stroke()
-
-    // Draw 90° text
-    const textX = vertex.x + (i < 2 ? -25 : 25)
-    const textY = vertex.y + (i % 3 === 0 ? -10 : 25)
-    ctx.fillStyle = '#e74c3c'
-    ctx.font = '12px Arial'
-    ctx.fillText('90°', textX, textY)
-  })
-}
-
-function drawDiagonals() {
-  ctx.strokeStyle = '#9b59b6'
-  ctx.lineWidth = 2
-  ctx.setLineDash([5, 5])
-
-  // Draw diagonals
-  ctx.beginPath()
-  ctx.moveTo(square.vertices[0].x, square.vertices[0].y)
-  ctx.lineTo(square.vertices[2].x, square.vertices[2].y)
-  ctx.moveTo(square.vertices[1].x, square.vertices[1].y)
-  ctx.lineTo(square.vertices[3].x, square.vertices[3].y)
-  ctx.stroke()
-
-  ctx.setLineDash([])
-
-  // Draw center point
-  ctx.fillStyle = '#9b59b6'
-  ctx.beginPath()
-  ctx.arc(square.center.x, square.center.y, 3, 0, 2 * Math.PI)
-  ctx.fill()
-
-  // Draw perpendicular mark
-  const markSize = 8
-  ctx.strokeStyle = '#9b59b6'
-  ctx.lineWidth = 1
-  ctx.beginPath()
-  ctx.moveTo(square.center.x - markSize, square.center.y - markSize)
-  ctx.lineTo(square.center.x - markSize + 4, square.center.y - markSize)
-  ctx.lineTo(square.center.x - markSize + 4, square.center.y - markSize + 4)
-  ctx.stroke()
-}
-
-function drawSideMeasurements() {
-  ctx.fillStyle = '#27ae60'
-  ctx.font = '14px Arial'
-
-  const sideLength = square.sideLength
-  const measurements = [
-    { x: square.center.x, y: square.vertices[0].y - 15, text: `${sideLength}` },
-    { x: square.vertices[1].x + 15, y: square.center.y, text: `${sideLength}` },
-    { x: square.center.x, y: square.vertices[2].y + 25, text: `${sideLength}` },
-    { x: square.vertices[3].x - 25, y: square.center.y, text: `${sideLength}` }
+  const points = [
+    [centerX - size/2, centerY - size/2], // A
+    [centerX + size/2, centerY - size/2], // B
+    [centerX + size/2, centerY + size/2], // C
+    [centerX - size/2, centerY + size/2]  // D
   ]
 
-  measurements.forEach(measurement => {
-    ctx.fillText(measurement.text, measurement.x, measurement.y)
-  })
-}
-
-function drawCircles() {
-  // Circumscribed circle
-  ctx.strokeStyle = '#f39c12'
-  ctx.lineWidth = 2
-  ctx.setLineDash([3, 3])
-  const circumRadius = square.sideLength * Math.sqrt(2) / 2
+  // Малюємо квадрат
   ctx.beginPath()
-  ctx.arc(square.center.x, square.center.y, circumRadius, 0, 2 * Math.PI)
+  ctx.moveTo(points[0][0], points[0][1])
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i][0], points[i][1])
+  }
+  ctx.closePath()
+  ctx.fill()
   ctx.stroke()
 
-  // Inscribed circle
-  ctx.strokeStyle = '#16a085'
-  const inscribedRadius = square.sideLength / 2
+  if (options.showLabels !== false) {
+    // Підписи вершин
+    ctx.fillStyle = '#1f2937'
+    ctx.font = '14px Arial'
+    ctx.fillText('A', points[0][0] - 15, points[0][1] - 5)
+    ctx.fillText('B', points[1][0] + 5, points[1][1] - 5)
+    ctx.fillText('C', points[2][0] + 5, points[2][1] + 15)
+    ctx.fillText('D', points[3][0] - 15, points[3][1] + 15)
+  }
+
+  return points
+}
+
+function drawRectangleToSquare(canvas) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
+
+  ctx.clearRect(0, 0, width, height)
+
+  const centerX = width / 2
+  const centerY = height / 2
+
+  // Спочатку прямокутник
+  ctx.strokeStyle = '#6b7280'
+  ctx.fillStyle = 'rgba(107, 114, 128, 0.1)'
+  ctx.lineWidth = 1
+  ctx.setLineDash([5, 5])
+  ctx.fillRect(centerX - 50, centerY - 30, 100, 60)
+  ctx.strokeRect(centerX - 50, centerY - 30, 100, 60)
+
+  // Потім квадрат
+  ctx.setLineDash([])
+  drawSquare(canvas, { size: 60, strokeColor: '#059669' })
+
+  // Стрілка
+  ctx.strokeStyle = '#059669'
+  ctx.lineWidth = 2
   ctx.beginPath()
-  ctx.arc(square.center.x, square.center.y, inscribedRadius, 0, 2 * Math.PI)
+  ctx.moveTo(centerX + 55, centerY)
+  ctx.lineTo(centerX + 70, centerY)
+  ctx.stroke()
+
+  // Головка стрілки
+  ctx.beginPath()
+  ctx.moveTo(centerX + 65, centerY - 5)
+  ctx.lineTo(centerX + 70, centerY)
+  ctx.lineTo(centerX + 65, centerY + 5)
+  ctx.stroke()
+
+  ctx.fillStyle = '#059669'
+  ctx.font = '10px Arial'
+  ctx.fillText('усі сторони рівні', centerX + 75, centerY)
+}
+
+function drawRhombusToSquare(canvas) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
+
+  ctx.clearRect(0, 0, width, height)
+
+  const centerX = width / 2
+  const centerY = height / 2
+
+  // Спочатку ромб
+  ctx.strokeStyle = '#6b7280'
+  ctx.fillStyle = 'rgba(107, 114, 128, 0.1)'
+  ctx.lineWidth = 1
+  ctx.setLineDash([5, 5])
+
+  const rhombPoints = [
+    [centerX, centerY - 40],
+    [centerX + 35, centerY],
+    [centerX, centerY + 40],
+    [centerX - 35, centerY]
+  ]
+
+  ctx.beginPath()
+  ctx.moveTo(rhombPoints[0][0], rhombPoints[0][1])
+  for (let i = 1; i < rhombPoints.length; i++) {
+    ctx.lineTo(rhombPoints[i][0], rhombPoints[i][1])
+  }
+  ctx.closePath()
+  ctx.fill()
+  ctx.stroke()
+
+  // Потім квадрат
+  ctx.setLineDash([])
+  drawSquare(canvas, { size: 60, strokeColor: '#059669' })
+
+  // Стрілка
+  ctx.strokeStyle = '#059669'
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.moveTo(centerX + 45, centerY)
+  ctx.lineTo(centerX + 60, centerY)
+  ctx.stroke()
+
+  // Головка стрілки
+  ctx.beginPath()
+  ctx.moveTo(centerX + 55, centerY - 5)
+  ctx.lineTo(centerX + 60, centerY)
+  ctx.lineTo(centerX + 55, centerY + 5)
+  ctx.stroke()
+
+  ctx.fillStyle = '#059669'
+  ctx.font = '10px Arial'
+  ctx.fillText('усі кути прямі', centerX + 65, centerY)
+}
+
+function drawCombination(canvas) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
+
+  ctx.clearRect(0, 0, width, height)
+
+  const centerX = width / 2
+  const centerY = height / 2
+
+  // Прямокутник
+  ctx.strokeStyle = '#3b82f6'
+  ctx.fillStyle = 'rgba(59, 130, 246, 0.1)'
+  ctx.lineWidth = 2
+  ctx.fillRect(centerX - 80, centerY - 25, 60, 50)
+  ctx.strokeRect(centerX - 80, centerY - 25, 60, 50)
+
+  ctx.fillStyle = '#3b82f6'
+  ctx.font = '12px Arial'
+  ctx.fillText('Прямокутник', centerX - 80, centerY - 35)
+
+  // Ромб
+  ctx.strokeStyle = '#7c3aed'
+  ctx.fillStyle = 'rgba(124, 58, 237, 0.1)'
+
+  const rhombPoints = [
+    [centerX + 50, centerY - 25],
+    [centerX + 75, centerY],
+    [centerX + 50, centerY + 25],
+    [centerX + 25, centerY]
+  ]
+
+  ctx.beginPath()
+  ctx.moveTo(rhombPoints[0][0], rhombPoints[0][1])
+  for (let i = 1; i < rhombPoints.length; i++) {
+    ctx.lineTo(rhombPoints[i][0], rhombPoints[i][1])
+  }
+  ctx.closePath()
+  ctx.fill()
+  ctx.stroke()
+
+  ctx.fillStyle = '#7c3aed'
+  ctx.fillText('Ромб', centerX + 35, centerY - 35)
+
+  // Квадрат внизу
+  drawSquare(canvas, {
+    size: 50,
+    strokeColor: '#dc2626',
+    fillColor: 'rgba(220, 38, 38, 0.2)'
+  })
+
+  ctx.fillStyle = '#dc2626'
+  ctx.font = '14px Arial'
+  ctx.fillText('КВАДРАТ', centerX - 30, centerY + 45)
+
+  // Стрілки
+  ctx.strokeStyle = '#059669'
+  ctx.lineWidth = 2
+
+  // Від прямокутника
+  ctx.beginPath()
+  ctx.moveTo(centerX - 40, centerY - 10)
+  ctx.lineTo(centerX - 15, centerY - 5)
+  ctx.stroke()
+
+  // Від ромба
+  ctx.beginPath()
+  ctx.moveTo(centerX + 35, centerY + 10)
+  ctx.lineTo(centerX + 15, centerY + 5)
+  ctx.stroke()
+}
+
+function drawSquareWithProperties(canvas) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
+
+  ctx.clearRect(0, 0, width, height)
+
+  const points = drawSquare(canvas, {
+    size: 120,
+    strokeColor: '#059669',
+    fillColor: 'rgba(5, 150, 105, 0.1)'
+  })
+
+  if (currentHighlight.value === 'angles') {
+    // Позначаємо прямі кути
+    ctx.strokeStyle = '#059669'
+    ctx.lineWidth = 2
+    const corner = 12
+
+    points.forEach(point => {
+      ctx.strokeRect(point[0] - corner/2, point[1] - corner/2, corner, corner)
+    })
+
+  } else if (currentHighlight.value === 'sides') {
+    // Виділяємо всі сторони
+    ctx.strokeStyle = '#059669'
+    ctx.lineWidth = 4
+
+    for (let i = 0; i < points.length; i++) {
+      const next = (i + 1) % points.length
+      ctx.beginPath()
+      ctx.moveTo(points[i][0], points[i][1])
+      ctx.lineTo(points[next][0], points[next][1])
+      ctx.stroke()
+    }
+
+    // Позначки рівності
+    ctx.fillStyle = '#059669'
+    for (let i = 0; i < points.length; i++) {
+      const next = (i + 1) % points.length
+      const midX = (points[i][0] + points[next][0]) / 2
+      const midY = (points[i][1] + points[next][1]) / 2
+
+      ctx.beginPath()
+      ctx.arc(midX, midY, 3, 0, 2 * Math.PI)
+      ctx.fill()
+    }
+
+  } else if (currentHighlight.value === 'diagonals') {
+    // Діагоналі
+    ctx.strokeStyle = '#059669'
+    ctx.lineWidth = 3
+
+    // AC
+    ctx.beginPath()
+    ctx.moveTo(points[0][0], points[0][1])
+    ctx.lineTo(points[2][0], points[2][1])
+    ctx.stroke()
+
+    // BD
+    ctx.beginPath()
+    ctx.moveTo(points[1][0], points[1][1])
+    ctx.lineTo(points[3][0], points[3][1])
+    ctx.stroke()
+
+    // Центр перетину
+    const centerX = (points[0][0] + points[2][0]) / 2
+    const centerY = (points[0][1] + points[2][1]) / 2
+
+    ctx.fillStyle = '#059669'
+    ctx.beginPath()
+    ctx.arc(centerX, centerY, 4, 0, 2 * Math.PI)
+    ctx.fill()
+
+    // Позначка перпендикулярності
+    ctx.strokeStyle = '#059669'
+    ctx.lineWidth = 1
+    ctx.strokeRect(centerX - 6, centerY - 6, 12, 12)
+
+    ctx.fillStyle = '#1f2937'
+    ctx.font = '12px Arial'
+    ctx.fillText('O', centerX + 8, centerY - 8)
+
+  } else if (currentHighlight.value === 'circles') {
+    // Описане коло
+    const centerX = width / 2
+    const centerY = height / 2
+    const circumRadius = 120 * Math.sqrt(2) / 2
+
+    ctx.strokeStyle = '#3b82f6'
+    ctx.setLineDash([5, 5])
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    ctx.arc(centerX, centerY, circumRadius, 0, 2 * Math.PI)
+    ctx.stroke()
+
+    // Вписане коло
+    ctx.strokeStyle = '#f59e0b'
+    ctx.beginPath()
+    ctx.arc(centerX, centerY, 60, 0, 2 * Math.PI)
+    ctx.stroke()
+
+    ctx.setLineDash([])
+  }
+}
+
+function drawCircumscribedCircle(canvas) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
+
+  ctx.clearRect(0, 0, width, height)
+
+  const centerX = width / 2
+  const centerY = height / 2
+  const size = 60
+  const radius = size * Math.sqrt(2) / 2
+
+  // Описане коло
+  ctx.strokeStyle = '#3b82f6'
+  ctx.setLineDash([3, 3])
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
   ctx.stroke()
 
   ctx.setLineDash([])
+
+  // Квадрат
+  drawSquare(canvas, {
+    size: size,
+    strokeColor: '#dc2626',
+    showLabels: false
+  })
+
+  // Радіус
+  ctx.strokeStyle = '#3b82f6'
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  ctx.moveTo(centerX, centerY)
+  ctx.lineTo(centerX + size/2, centerY - size/2)
+  ctx.stroke()
+
+  ctx.fillStyle = '#3b82f6'
+  ctx.font = '12px Arial'
+  ctx.fillText('R', centerX + 15, centerY - 15)
 }
 
-function handleCanvasClick(event) {
-  const rect = squareCanvas.value.getBoundingClientRect()
-  const x = event.clientX - rect.left
-  const y = event.clientY - rect.top
+function drawInscribedCircle(canvas) {
+  const ctx = canvas.getContext('2d')
+  const { width, height } = canvas
 
-  // Check if clicked on vertex
-  for (let vertex of square.vertices) {
-    const distance = Math.sqrt((x - vertex.x) ** 2 + (y - vertex.y) ** 2)
-    if (distance < 10) {
-      hoverInfo.value = 'Вершина квадрата - тут кут 90°'
-      return
-    }
-  }
+  ctx.clearRect(0, 0, width, height)
 
-  // Check if clicked on center
-  const centerDistance = Math.sqrt((x - square.center.x) ** 2 + (y - square.center.y) ** 2)
-  if (centerDistance < 10) {
-    hoverInfo.value = 'Центр квадрата - точка перетину діагоналей'
-    return
-  }
+  const centerX = width / 2
+  const centerY = height / 2
+  const size = 80
+  const radius = size / 2
 
-  hoverInfo.value = ''
-}
+  // Квадрат
+  drawSquare(canvas, {
+    size: size,
+    strokeColor: '#dc2626',
+    showLabels: false
+  })
 
-function handleMouseMove(event) {
-  const rect = squareCanvas.value.getBoundingClientRect()
-  const x = event.clientX - rect.left
-  const y = event.clientY - rect.top
+  // Вписане коло
+  ctx.strokeStyle = '#f59e0b'
+  ctx.setLineDash([3, 3])
+  ctx.lineWidth = 2
+  ctx.beginPath()
+  ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
+  ctx.stroke()
 
-  // Check if hovering over different parts
-  for (let vertex of square.vertices) {
-    const distance = Math.sqrt((x - vertex.x) ** 2 + (y - vertex.y) ** 2)
-    if (distance < 15) {
-      hoverInfo.value = 'Вершина квадрата - кут 90°'
-      return
-    }
-  }
+  ctx.setLineDash([])
 
-  const centerDistance = Math.sqrt((x - square.center.x) ** 2 + (y - square.center.y) ** 2)
-  if (centerDistance < 15) {
-    hoverInfo.value = 'Центр квадрата - перетин діагоналей'
-    return
-  }
+  // Радіус
+  ctx.strokeStyle = '#f59e0b'
+  ctx.lineWidth = 1
+  ctx.beginPath()
+  ctx.moveTo(centerX, centerY)
+  ctx.lineTo(centerX, centerY - radius)
+  ctx.stroke()
 
-  hoverInfo.value = ''
+  ctx.fillStyle = '#f59e0b'
+  ctx.font = '12px Arial'
+  ctx.fillText('r', centerX + 5, centerY - radius/2)
 }
 
 function highlightProperty(property) {
-  highlightedProperty.value = highlightedProperty.value === property ? '' : property
-  draw()
+  currentHighlight.value = property
+  drawSquareWithProperties(propertiesCanvas.value)
 }
 
-function selectAnswer(questionIndex, optionIndex) {
-  const question = quizQuestions.value[questionIndex]
-  question.selected = optionIndex
-  question.answered = true
-}
+onMounted(async () => {
+  await nextTick()
+
+  if (definition1Canvas.value) {
+    drawRectangleToSquare(definition1Canvas.value)
+  }
+
+  if (definition2Canvas.value) {
+    drawRhombusToSquare(definition2Canvas.value)
+  }
+
+  if (definition3Canvas.value) {
+    drawCombination(definition3Canvas.value)
+  }
+
+  if (propertiesCanvas.value) {
+    drawSquareWithProperties(propertiesCanvas.value)
+  }
+
+  if (circumscribedCanvas.value) {
+    drawCircumscribedCircle(circumscribedCanvas.value)
+  }
+
+  if (inscribedCanvas.value) {
+    drawInscribedCircle(inscribedCanvas.value)
+  }
+})
 </script>
 
 <style scoped>
-.lesson-container {
-  max-width: 1200px;
+.square-lesson {
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  min-height: 100vh;
 }
 
-.lesson-title {
-  text-align: center;
-  color: #2c3e50;
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.lesson-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.definition-section, .properties-section, .recognition-section, .quiz-section, .visual-section {
-  margin-bottom: 3rem;
+.content-section {
   background: white;
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.definition-card {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
   padding: 2rem;
   border-radius: 15px;
-  margin-top: 1rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border: 1px solid #fecaca;
 }
 
-.definition-text {
-  font-size: 1.2rem;
+.content-section h2 {
+  color: #1e293b;
+  font-size: 1.8rem;
   margin-bottom: 1.5rem;
-  text-align: center;
+  border-bottom: 3px solid #dc2626;
+  padding-bottom: 0.5rem;
 }
 
-.equivalent-definitions h3 {
-  margin-bottom: 1rem;
-  text-align: center;
+.definitions-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
-.definition-item {
+.definition-box {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
-  padding: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-}
-
-.definition-item .emoji {
-  font-size: 1.5rem;
-  margin-right: 1rem;
-}
-
-.canvas-container {
-  position: relative;
-  text-align: center;
-  margin: 2rem 0;
-}
-
-canvas {
-  border: 2px solid #ecf0f1;
-  border-radius: 10px;
-  cursor: pointer;
-  background: white;
-}
-
-.canvas-info {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  pointer-events: none;
-}
-
-.controls {
-  display: flex;
-  justify-content: center;
   gap: 1rem;
-  margin-top: 1rem;
+  background: #fef2f2;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border-left: 5px solid #dc2626;
+  text-align: center;
 }
 
-.controls button {
-  padding: 10px 20px;
-  border: 2px solid #3498db;
-  background: white;
-  color: #3498db;
-  border-radius: 25px;
-  cursor: pointer;
+.definition-box.special {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 2px solid #dc2626;
+  border-left: 5px solid #dc2626;
+}
+
+.definition-box p {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #334155;
   font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.controls button:hover {
-  background: #3498db;
-  color: white;
-  transform: translateY(-2px);
-}
-
-.controls button.active {
-  background: #3498db;
-  color: white;
-  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
 }
 
 .properties-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .property-card {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
+  background: #fef2f2;
   padding: 1.5rem;
-  border-radius: 15px;
+  border-radius: 12px;
+  border: 2px solid transparent;
   cursor: pointer;
   transition: all 0.3s ease;
-  border: 3px solid transparent;
 }
 
 .property-card:hover {
+  border-color: #dc2626;
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.property-card.angles {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.property-card.sides {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.property-card.diagonals {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.property-card.circles {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.15);
 }
 
 .property-card h3 {
-  margin-bottom: 1rem;
-  font-size: 1.3rem;
+  color: #1e293b;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
 }
 
-.property-card ul {
-  list-style: none;
-  padding: 0;
+.property-card p {
+  color: #475569;
+  margin: 0 0 0.5rem 0;
 }
 
-.property-card li {
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
-  position: relative;
-}
-
-.property-card li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
+.formula {
+  background: #fee2e2;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
   font-weight: bold;
+  color: #dc2626;
+  margin: 0.25rem 0;
 }
 
-.recognition-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.recognition-card {
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+.interactive-square {
+  text-align: center;
+  background: #fef2f2;
   padding: 1.5rem;
-  border-radius: 15px;
-  border-left: 5px solid #3498db;
+  border-radius: 10px;
+  border: 2px dashed #fca5a5;
 }
 
-.recognition-card h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
-}
-
-.recognition-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.recognition-card li {
-  margin-bottom: 0.8rem;
-  padding-left: 1.5rem;
-  position: relative;
-  color: #34495e;
-}
-
-.recognition-card li::before {
-  content: "👉";
-  position: absolute;
-  left: 0;
+.hint {
+  color: #64748b;
+  font-style: italic;
+  margin: 1rem 0 0 0;
 }
 
 .intro-text {
-  font-size: 1.1rem;
-  color: #34495e;
-  text-align: center;
+  color: #475569;
   margin-bottom: 1.5rem;
-  font-style: italic;
+  font-size: 1.1rem;
 }
 
-.quiz-container {
-  margin-top: 1.5rem;
+.signs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-.quiz-question {
-  background: #f8f9fa;
+.signs-category {
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border-left: 5px solid #059669;
+}
+
+.signs-category h3 {
+  color: #1e293b;
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+}
+
+.sign-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: white;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  border-left: 4px solid #10b981;
+}
+
+.sign-number {
+  font-size: 1.5rem;
+  min-width: 40px;
+}
+
+.sign-content p {
+  margin: 0;
+  color: #334155;
+}
+
+.circles-explanation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.circle-demo {
+  text-align: center;
+  background: #f8fafc;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 2px solid #e2e8f0;
+}
+
+.circle-demo h3 {
+  color: #1e293b;
+  margin: 0 0 0.5rem 0;
+}
+
+.circle-demo p {
+  color: #64748b;
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+}
+
+.summary {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  border: 2px solid #10b981;
+}
+
+.summary h2 {
+  color: #047857;
+  border-bottom-color: #10b981;
+}
+
+.summary-box {
+  background: white;
   padding: 1.5rem;
   border-radius: 10px;
-  margin-bottom: 1.5rem;
-  border-left: 4px solid #3498db;
+  border: 1px solid #a7f3d0;
 }
 
-.quiz-question h3 {
-  color: #2c3e50;
-  margin-bottom: 1rem;
+.summary-box p {
+  color: #047857;
+  font-weight: bold;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
 }
 
-.quiz-options {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.quiz-options button {
-  padding: 12px 20px;
-  border: 2px solid #ecf0f1;
-  background: white;
-  text-align: left;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.quiz-options button:hover:not(:disabled) {
-  border-color: #3498db;
-  background: #ebf3fd;
-}
-
-.quiz-options button.correct {
-  background: #d4edda;
-  border-color: #27ae60;
-  color: #155724;
-}
-
-.quiz-options button.incorrect {
-  background: #f8d7da;
-  border-color: #e74c3c;
-  color: #721c24;
-}
-
-.quiz-options button.selected:not(.correct):not(.incorrect) {
-  background: #3498db;
-  color: white;
-}
-
-.explanation {
-  margin-top: 1rem;
-  padding: 1rem;
-  background: #e8f5e8;
-  border-radius: 8px;
-  border-left: 4px solid #27ae60;
-}
-
-.explanation p {
+.summary-box ul {
+  color: #065f46;
   margin: 0;
-  color: #155724;
+  padding-left: 1.5rem;
 }
 
-h2 {
-  color: #2c3e50;
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-  text-align: center;
+.summary-box li {
+  margin: 0.5rem 0;
+  font-weight: 500;
+}
+
+canvas {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: white;
 }
 
 @media (max-width: 768px) {
-  .lesson-container {
+  .square-lesson {
     padding: 1rem;
   }
 
-  .lesson-title {
-    font-size: 2rem;
+  .definitions-container {
+    grid-template-columns: 1fr;
+  }
+
+  .definition-box.special {
+    grid-column: 1;
   }
 
   .properties-grid {
     grid-template-columns: 1fr;
   }
 
-  .recognition-cards {
+  .circles-explanation {
     grid-template-columns: 1fr;
-  }
-
-  canvas {
-    max-width: 100%;
-    height: auto;
-  }
-
-  .controls {
-    flex-wrap: wrap;
-  }
-
-  .controls button {
-    font-size: 0.9rem;
-    padding: 8px 15px;
   }
 }
 </style>

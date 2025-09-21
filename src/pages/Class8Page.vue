@@ -40,6 +40,13 @@
             >
               🟩 Квадрат: властивості та ознаки
             </router-link>
+            <router-link
+              :to="'/8-class/geometry-rhombus'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'geometry-rhombus' }"
+            >
+              🔷 Ромб: властивості та ознаки
+            </router-link>
           </div>
         </div>
         <router-link
@@ -71,6 +78,7 @@ import QuadrilateralsTheoryLesson from '../components/geometry8/QuadrilateralsTh
 import ParallelogramLesson from '../components/geometry/ParallelogramLesson.vue'
 import RectangleLesson from '../components/geometry/RectangleLesson.vue'
 import SquareLesson from '../components/geometry/SquareLesson.vue'
+import RhombusLesson from '../components/geometry/RhombusLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 import BinaryCodingLesson from '../components/computerscience8/BinaryCodingLesson.vue'
 
@@ -99,6 +107,8 @@ const currentComponent = computed(() => {
       return RectangleLesson
     case 'geometry-square':
       return SquareLesson
+    case 'geometry-rhombus':
+      return RhombusLesson
     case 'algebra':
       return AlgebraLessons
     case 'computer-science':
