@@ -233,26 +233,30 @@ h1 {
 @media (min-width: 768px) {
     .subject-nav {
         flex-direction: row;
-        gap: 20px;
+        gap: 15px;
         margin-bottom: 30px;
         padding: 20px;
         border-radius: 10px;
-        overflow-x: visible;
         align-items: flex-start;
+        flex-wrap: nowrap;
+        justify-content: space-between;
     }
 
     .subject-group {
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
+        flex: 1;
+        min-width: 0;
     }
 
     .subject-submenu {
         flex-direction: row;
-        gap: 8px;
+        gap: 6px;
         margin-left: 0;
         padding-left: 0;
         border-left: none;
         margin-top: 4px;
+        flex-wrap: wrap;
     }
 }
 
@@ -285,13 +289,16 @@ h1 {
 .subject-link.main-subject {
     font-weight: 600;
     font-size: 1em;
+    flex: 0 0 auto;
+    align-self: flex-start;
 }
 
 .subject-submenu .subject-link {
-    font-size: 0.85em;
-    padding: 8px 14px;
+    font-size: 0.8em;
+    padding: 6px 10px;
     background: #f1f5f9;
     border: 1px solid #e2e8f0;
+    flex: 0 0 auto;
 }
 
 .subject-submenu .subject-link:hover,
