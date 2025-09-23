@@ -56,13 +56,25 @@
         >
           🧮 Алгебра
         </router-link>
-        <router-link
-          :to="'/8-class/computer-science'"
-          class="subject-link main-subject"
-          :class="{ active: currentSubject === 'computer-science' }"
-        >
-          💻 Комп'ютерна наука
-        </router-link>
+        <div class="subject-group">
+          <div class="subject-main">💻 Комп'ютерна наука</div>
+          <div class="subject-submenu">
+            <router-link
+              :to="'/8-class/computer-science'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'computer-science' }"
+            >
+              🔢 Двійкове кодування
+            </router-link>
+            <router-link
+              :to="'/8-class/computer-science-archives'"
+              class="subject-link"
+              :class="{ active: currentSubject === 'computer-science-archives' }"
+            >
+              🗜️ Архіви та стиснення
+            </router-link>
+          </div>
+        </div>
       </div>
     </div>
     
@@ -81,6 +93,7 @@ import SquareLesson from '../components/geometry/SquareLesson.vue'
 import RhombusLesson from '../components/geometry/RhombusLesson.vue'
 import AlgebraLessons from '../components/algebra8/AlgebraLessons.vue'
 import BinaryCodingLesson from '../components/computerscience8/BinaryCodingLesson.vue'
+import ArchivingCompressionLesson from '../components/computerscience8/ArchivingCompressionLesson.vue'
 
 const props = defineProps({
   subject: {
@@ -113,6 +126,8 @@ const currentComponent = computed(() => {
       return AlgebraLessons
     case 'computer-science':
       return BinaryCodingLesson
+    case 'computer-science-archives':
+      return ArchivingCompressionLesson
     default:
       return GeometryLesson
   }

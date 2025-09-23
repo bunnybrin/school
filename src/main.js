@@ -25,6 +25,7 @@ const routes = [
   { path: '/8-class/geometry-rhombus', component: Class8Page, props: { subject: 'geometry-rhombus' } },
   { path: '/8-class/algebra', component: Class8Page, props: { subject: 'algebra' } },
   { path: '/8-class/computer-science', component: Class8Page, props: { subject: 'computer-science' } },
+  { path: '/8-class/computer-science-archives', component: Class8Page, props: { subject: 'computer-science-archives' } },
   { path: '/9-class', component: Class9Page },
   { path: '/8-class/solutions', component: import('./pages/Solutions.vue') },
 ]

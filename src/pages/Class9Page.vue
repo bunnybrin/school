@@ -19,11 +19,25 @@
         >
           🖥️ Урок 2: Операційні системи
         </button>
+        <button
+          @click="currentLesson = 'malware-security'"
+          :class="['lesson-btn', { active: currentLesson === 'malware-security' }]"
+        >
+          🛡️ Урок 3: Захист від шкідливого ПЗ
+        </button>
+        <button
+          @click="currentLesson = 'data-encoding'"
+          :class="['lesson-btn', { active: currentLesson === 'data-encoding' }]"
+        >
+          🔤 Урок 4: Кодування і декодування даних
+        </button>
       </div>
     </div>
 
     <InformaticsAsScience v-if="currentLesson === 'informatics'" />
-    <OperatingSystemLesson v-else />
+    <OperatingSystemLesson v-else-if="currentLesson === 'operating-systems'" />
+    <MalwareSecurityLesson v-else-if="currentLesson === 'malware-security'" />
+    <DataEncodingLesson v-else-if="currentLesson === 'data-encoding'" />
   </div>
 </template>
 
@@ -31,6 +45,8 @@
 import { ref } from 'vue'
 import InformaticsAsScience from '../components/computerscience9/InformaticsAsScience.vue'
 import OperatingSystemLesson from '../components/computerscience5/OperatingSystemLesson.vue'
+import MalwareSecurityLesson from '../components/computerscience9/MalwareSecurityLesson.vue'
+import DataEncodingLesson from '../components/computerscience9/DataEncodingLesson.vue'
 
 const currentLesson = ref('informatics')
 </script>
